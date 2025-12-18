@@ -1,0 +1,106 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: chartreuse;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+/* .container{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+} */
+h2{
+    font-style: italic;
+    background-color: greenyellow;
+    color: white;
+    width: fit-content;
+    padding-right: 45px;
+   transform: skewX(-25deg);
+}
+.listwarpper{
+    height: 70vh;
+    flex-grow: 1;
+    background-color: chocolate;
+    overflow-y: auto;
+}
+ @media screen and (max-width:550px) {/*for the new feature */
+    .listwarpper{
+        height: 60vh;
+        width: 100%;
+
+    }
+    .listandnew{
+        display: flex;
+        flex-direction: column;
+    }
+    .newfeature{
+    display: flex;
+    width: 100%;
+    flex-direction: row !important;
+    height: auto !important;
+ }
+    
+}
+#mybutton{
+    color: red;
+    border: none;
+    padding:auto;
+    width: fit-content;
+    white-space: nowrap;
+    border-radius: 2px;
+    min-width:10px;
+}
+
+li.selected{
+    background-color: green;
+}
+li{
+    width: 100%;
+    word-wrap: break-word;
+    margin-left: 3px;
+    padding: 0;
+
+}
+#list{
+    padding-left: 15px;
+}
+ #text{
+    height: 25px;
+    flex-grow: 1;
+    border: none;
+    outline: none;
+ }
+ .inputwarpper{
+    display: flex;
+    justify-content: space-around;
+    border: 3px solid cyan;
+    height: 30px;
+    width: 100%;
+ }
+ .listandnew{
+    display: flex;
+ }
+ .newfeature{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+ }
+ #delete{
+    width: 100%;
+    height: auto;
+ }
+ #dabutton{
+    width: 100%;
+    height: auto;
+    white-space: nowrap;
+ }
+ #conbox{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(122, 78, 46);
+ }
