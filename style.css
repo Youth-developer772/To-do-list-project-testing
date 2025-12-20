@@ -20,6 +20,11 @@ h2{
     padding-right: 45px;
    transform: skewX(-25deg);
 }
+button{
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(27, 25, 25);
+}
 .listwarpper{
     height: 70vh;
     flex-grow: 1;
@@ -28,7 +33,7 @@ h2{
 }
  @media screen and (max-width:550px) {/*for the new feature */
     .listwarpper{
-        height: 60vh;
+        height: 80vh;
         width: 100%;
 
     }
@@ -40,7 +45,15 @@ h2{
     display: flex;
     width: 100%;
     flex-direction: row !important;
-    height: auto !important;
+    height: fit-content !important;
+ }
+    #conbox{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(122, 78, 46);
+    width: 70%;
  }
     
 }
@@ -52,6 +65,7 @@ h2{
     white-space: nowrap;
     border-radius: 2px;
     min-width:10px;
+    cursor: pointer;
 }
 
 li.selected{
@@ -62,6 +76,7 @@ li{
     word-wrap: break-word;
     margin-left: 3px;
     padding: 0;
+    font-style: italic;
 
 }
 #list{
@@ -91,11 +106,13 @@ li{
  #delete{
     width: 100%;
     height: auto;
+    cursor: pointer;
  }
  #dabutton{
     width: 100%;
     height: auto;
     white-space: nowrap;
+    cursor: pointer;
  }
  #conbox{
     position: absolute;
@@ -104,3 +121,18 @@ li{
     transform: translate(-50%,-50%);
     background-color: rgb(122, 78, 46);
  }
+#butttonwarper{
+    display: flex;
+    justify-content: flex-end;
+}
+.ptag{
+    margin: 5px;
+}
+.h4tag{
+    margin: 5px;
+}
+.icon{
+    font-size: large !important;
+    color: rgb(14, 22, 131);
+    vertical-align: middle;
+}
