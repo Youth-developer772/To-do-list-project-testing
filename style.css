@@ -7,11 +7,9 @@ body{
     margin: 0;
     height: 100vh;
 }
-/* .container{
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-} */
+.container{
+    overflow: hidden;
+}
 h2{
     font-style: italic;
     background-color: greenyellow;
@@ -24,12 +22,15 @@ button{
     font-style: italic;
     font-weight: bold;
     color: rgb(27, 25, 25);
+    padding: 0 !important;
+    cursor: pointer;
 }
 .listwarpper{
     height: 70vh;
     flex-grow: 1;
     background-color: chocolate;
     overflow-y: auto;
+    overflow-x: hidden;
 }
  @media screen and (max-width:550px) {/*for the new feature */
     .listwarpper{
@@ -81,7 +82,10 @@ li{
 }
 #list{
     padding-left: 15px;
+    border: none;
+    outline: none;
 }
+
  #text{
     height: 25px;
     flex-grow: 1;

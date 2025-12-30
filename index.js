@@ -8,6 +8,19 @@ let editbutton=document.querySelector("#edit");
 let detail=document.querySelector("#detail");
 let conbox=document.querySelector("#conbox");
 let checkarea=document.querySelector("#checkarea");
+const warper=[];
+
+window.onload=function(){
+    let test=this.localStorage.getItem("data");
+    console.log(test)
+    let data=JSON.parse(localStorage.getItem("data"))||[];
+    data.forEach(text=>{
+        let li=this.document.createElement("li");
+        li.textContent=text;
+        list.append(li);
+    })
+}
+
 function additem(){
     let a=input.value.trim(); 
     if (a!==""){  
@@ -15,34 +28,40 @@ function additem(){
     let now_create= new Date();
     li.setAttribute('data-create-date',now_create.toLocaleDateString());
     li.setAttribute("data-create-time", now_create.toLocaleTimeString());
+    let date_container=li.getAttribute("data-create-date");
+    console.log(date_container)
     li.textContent=a;
     list.appendChild(li);
     input.value=""
     input.focus();
-    li.addEventListener("click", selectitem);
+    // li.addEventListener("click", selectitem);
+    update_data();
 }};
 
 button.addEventListener("click",additem);
 input.addEventListener("keydown",function(event){
     if(event.key==="Enter"){
-        additem()
+        additem();
     }
 });
-function selectitem(event){
-    let clicked=event.target;
-    let currentlySelected = list.querySelector('.selected');
-    if (currentlySelected && currentlySelected !== clicked) {
-        currentlySelected.classList.remove('selected');
-    }
 
+list.addEventListener("click", function(event){
+    let clicked=event.target;
+    let current_clicked=list.querySelector(".selected");
+    if(current_clicked && current_clicked !== clicked){
+        current_clicked.classList.remove("selected");
+    }
     clicked.classList.toggle('selected');
-}
+})
+
 delbutton.addEventListener("click",function(){
     let selected=list.querySelector('.selected');
     if(selected){
         list.removeChild(selected);
-    }
+        update_data();
+    };
 });
+
 dabutton.addEventListener("click",function(){
     if (!conbox.hasChildNodes() && list.hasChildNodes()){    
     let iconwarper=document.createElement("div");
@@ -73,19 +92,24 @@ dabutton.addEventListener("click",function(){
             list.removeChild(list.firstChild);
         };
         conbox.innerHTML="";
+        update_data();
     });
     canbutton.addEventListener("click",function(){
         conbox.innerHTML=""
     });
     }
 });
+
 list.addEventListener("keydown",function(event){
     if(event.key==="Delete"){
     let selected=list.querySelector('.selected');
-       list.removeChild(selected);
-       input.focus();
+      if(selected){
+        list.removeChild(selected);
+        update_data();
+      };
     }
 });
+
 editbutton.addEventListener("click",function(){
     let selectedtoedit=document.querySelector(".selected");
     if(selectedtoedit){
@@ -93,14 +117,17 @@ editbutton.addEventListener("click",function(){
        selectedtoedit.focus(); 
     }
     selectedtoedit.addEventListener("blur",function(){
-        selectedtoedit.contentEditable="false"
+        selectedtoedit.contentEditable="false";
+        update_data();
     },{ once: true });
     selectedtoedit.addEventListener("keydown",function(e){
         if(e.key==="Enter"){
-            selectedtoedit.contentEditable="false"
+            selectedtoedit.contentEditable="false";
+            update_data();
         };
     });
 });
+
 let detailtest=document.querySelector("#detailtest");
 detail.addEventListener("click",function(){
     let selectedtocheck=document.querySelector(".selected");
@@ -127,9 +154,15 @@ detail.addEventListener("click",function(){
     }
 });
 
-
-
-
-
-
-// setting featureထည့်ရန်
+function update_data(){
+    localStorage.clear("data");
+    if(list.hasChildNodes()){
+        localStorage.clear("data");
+        let li=list.querySelectorAll("li");
+        let data=[];
+        li.forEach((a)=>{
+            data.push(a.textContent)
+        });
+        localStorage.setItem("data",JSON.stringify(data));
+    };
+}
