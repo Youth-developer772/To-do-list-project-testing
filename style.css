@@ -2,10 +2,11 @@
     box-sizing: border-box;
 }
 body{
-    background-color: chartreuse;
+    background-image: url("pexels-fotios-photos-1107717.jpg");
     padding: 0;
     margin: 0;
     height: 100vh;
+    background-size: cover;
 }
 .container{
     overflow: hidden;
@@ -19,41 +20,67 @@ h2{
    transform: skewX(-25deg);
 }
 button{
-    font-style: italic;
-    font-weight: bold;
-    color: rgb(27, 25, 25);
-    padding: 0 !important;
+    width: 100%;
+    padding: 2px !important;
     cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: rgb(163, 158, 158);
+    letter-spacing: 3px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+}
+button:hover{
+    border:1px solid aquamarine;
 }
 .listwarpper{
-    height: 70vh;
-    flex-grow: 1;
-    background-color: chocolate;
+    height: 100vh;
+    width: 80%;
+    /* background-color: rgb(185, 92, 25,0.7); */
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: rgb(74, 180, 74,0.5);
+
 }
  @media screen and (max-width:550px) {/*for the new feature */
+    li{
+        font-size: 18px !important;
+    }
     .listwarpper{
         height: 80vh;
         width: 100%;
 
+    }
+    button{
+    font-style: italic;
+    font-weight: bold;
+    width: auto !important;
+    color: rgb(27, 25, 25);
+    padding: 0 !important;
+    cursor: pointer;
+    flex-grow: 1 !important;
+    letter-spacing: normal;
+    }
+    .listwarpper{
+        flex-grow: 1;
     }
     .listandnew{
         display: flex;
         flex-direction: column;
     }
     .newfeature{
+    
     display: flex;
     width: 100%;
     flex-direction: row !important;
     height: fit-content !important;
  }
-    #conbox{
+.conbox{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: rgb(122, 78, 46);
+    background-color: rgba(255, 255, 0, 0.822);
     width: 70%;
  }
     
@@ -61,7 +88,8 @@ button{
 #mybutton{
     color: red;
     border: none;
-    padding:auto;
+    padding:auto 5px;
+    border: none;
     width: fit-content;
     white-space: nowrap;
     border-radius: 2px;
@@ -70,18 +98,19 @@ button{
 }
 
 li.selected{
-    background-color: green;
+    background-color:#0e74db;
 }
 li{
     width: 100%;
+    font-size: 20px;
     word-wrap: break-word;
     margin-left: 3px;
     padding: 0;
-    font-style: italic;
-
+    color:rgb(57, 8, 192);/*testing*/
+    font-family: "Times New Roman", Times, serif;
 }
 #list{
-    padding-left: 15px;
+    padding-left: 25px;
     border: none;
     outline: none;
 }
@@ -104,26 +133,34 @@ li{
  }
  .newfeature{
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
-    height: 70vh;
+    height: 100vh;
+    background-color: rgb(163, 158, 158);
+    gap: 10px;
  }
  #delete{
     width: 100%;
     height: auto;
     cursor: pointer;
+    padding: 0;
  }
  #dabutton{
     width: 100%;
     height: auto;
     white-space: nowrap;
     cursor: pointer;
+    padding: 0;
  }
- #conbox{
+ .conbox{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: rgb(122, 78, 46);
+    background-color: rgba(255, 255, 0, 0.747);
+    height: 90px;
+    width: 200px;
+    border-radius: 5px;
  }
 #butttonwarper{
     display: flex;
@@ -139,4 +176,72 @@ li{
     font-size: large !important;
     color: rgb(14, 22, 131);
     vertical-align: middle;
+}
+.displaydiv{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: red;
+    width: 170px;
+    height: 165px;
+    text-align: center;
+    border-radius: 6px;
+}
+.detailbutton{
+    width: 30px !important;
+    padding: 5px;
+    background-color: rgb(165, 140, 140,0.5);
+    border-radius: 5px;
+}
+#buttonwarper{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction:row-reverse;
+    gap: 3px;
+}
+.okbutton{
+    width: auto;
+    letter-spacing: normal;
+    background-color: #0ea584;
+    border-radius: 5px;
+}
+.canbutton{
+    width: auto;
+    letter-spacing: normal;
+    background-color: #109679;
+    border-radius: 5px;
+}
+.iconwarper{
+    text-align: center;
+}
+.iconwarper h4{
+    color: rgba(201, 9, 9, 0.822);
+    font-weight: bold;
+    font-style: oblique;
+}
+h4 span{
+    vertical-align: middle;
+    font-size: large !important;
+    color: rgb(226, 46, 14);
+}
+.ptag1{
+    background-color: black;
+    color: wheat;
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%,-50%);
+    animation: setting 2s forwards;
+    white-space: nowrap;
+}
+@keyframes setting {
+    from{
+        top: 60%;
+    }
+    to{
+        top:40%;
+    }
 }

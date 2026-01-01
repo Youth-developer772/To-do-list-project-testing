@@ -1,3 +1,4 @@
+let body=document.querySelector("body");
 let container=document.querySelector(".container");
 let input=document.getElementById("text");
 let button=document.getElementById("mybutton");
@@ -6,34 +7,53 @@ let delbutton=document.getElementById("delete");
 let dabutton=document.querySelector("#dabutton");//delete all
 let editbutton=document.querySelector("#edit");
 let detail=document.querySelector("#detail");
-let conbox=document.querySelector("#conbox");
 let checkarea=document.querySelector("#checkarea");
-const warper=[];
+let conboxwarper=document.querySelector("#conboxwarper");
+let setting=document.querySelector("#setting");
 
 window.onload=function(){
-    let test=this.localStorage.getItem("data");
+    let test=localStorage.getItem("data");
     console.log(test)
     let data=JSON.parse(localStorage.getItem("data"))||[];
     data.forEach(text=>{
-        let li=this.document.createElement("li");
-        li.textContent=text;
+        console.log(` this thsi thsi${text}`)
+        let li=document.createElement("li");
+        let text1=text.slice(0,-18);
+        let text2=text.slice(-18,-8);
+        let text3=text.slice(-8);
+        console.log(`testing at20  ${text1}`)
+        let h4tag_in_window=document.createElement("h4");
+        let h4tag1_in_window=document.createElement("h4");
+        h4tag_in_window.textContent=text2;
+        h4tag1_in_window.textContent=text3;
+        h4tag_in_window.style.display="none";
+         h4tag1_in_window.style.display="none";
+        li.textContent=text1;
         list.append(li);
+        li.append(h4tag_in_window,h4tag1_in_window);
     })
 }
 
 function additem(){
-    let a=input.value.trim(); 
-    if (a!==""){  
+    let a=input.value.trim();
+    let b=capitalizeFirstLetter(a);
+    if (b!==""){  
     let li=document.createElement("li");
     let now_create= new Date();
-    li.setAttribute('data-create-date',now_create.toLocaleDateString());
-    li.setAttribute("data-create-time", now_create.toLocaleTimeString());
-    let date_container=li.getAttribute("data-create-date");
-    console.log(date_container)
-    li.textContent=a;
+    let date_container=now_create.toLocaleDateString("en-GB");
+    let time_container=now_create.toLocaleTimeString("my-MM",{hour:"2-digit",minute:"2-digit"});
+    let h4tag_to_checkdate=document.createElement("h3");
+    let h4tag_to_checktime=document.createElement("h4");
+    h4tag_to_checkdate.textContent=date_container;
+    h4tag_to_checktime.textContent=time_container;
+    li.textContent=b;
     list.appendChild(li);
+    li.append(h4tag_to_checkdate,h4tag_to_checktime);
+    h4tag_to_checkdate.style.display="none";
+    h4tag_to_checktime.style.display="none";
     input.value=""
     input.focus();
+    console.log(`This is li textcontent_______${li.textContent}`)
     // li.addEventListener("click", selectitem);
     update_data();
 }};
@@ -59,11 +79,16 @@ delbutton.addEventListener("click",function(){
     if(selected){
         list.removeChild(selected);
         update_data();
+    }else{
+        let text="Please select a task";
+        user_do_not_choose_task(text);
     };
 });
 
 dabutton.addEventListener("click",function(){
-    if (!conbox.hasChildNodes() && list.hasChildNodes()){    
+    if (list.hasChildNodes()){ 
+    let conbox=document.createElement("div");
+    conbox.classList.add("conbox");   
     let iconwarper=document.createElement("div");
     iconwarper.classList.add("iconwarper");
     let h4tag=document.createElement("h4");
@@ -78,24 +103,25 @@ dabutton.addEventListener("click",function(){
     ptag.textContent="Are you sure to delete all tasks";
     ptag.classList.add("ptag");
     let buttonwarper=document.createElement("div");
-    buttonwarper.id="butttonwarper";
+    buttonwarper.id="buttonwarper";
     let okbutton=document.createElement("button");
     okbutton.textContent="Ok";
     okbutton.classList.add("okbutton");
     let canbutton=document.createElement("button");
     canbutton.textContent="Cancel";
-    canbutton.classList="canbutton";
+    canbutton.classList.add("canbutton")
     buttonwarper.append(okbutton,canbutton);
     conbox.append(iconwarper,ptag,buttonwarper);
+    conboxwarper.append(conbox);
     okbutton.addEventListener("click",function(){
         while(list.firstChild){
             list.removeChild(list.firstChild);
         };
-        conbox.innerHTML="";
+        conboxwarper.innerHTML="";
         update_data();
     });
     canbutton.addEventListener("click",function(){
-        conbox.innerHTML=""
+        conboxwarper.innerHTML=""
     });
     }
 });
@@ -115,7 +141,7 @@ editbutton.addEventListener("click",function(){
     if(selectedtoedit){
        selectedtoedit.contentEditable="true";
        selectedtoedit.focus(); 
-    }
+
     selectedtoedit.addEventListener("blur",function(){
         selectedtoedit.contentEditable="false";
         update_data();
@@ -126,31 +152,46 @@ editbutton.addEventListener("click",function(){
             update_data();
         };
     });
+}else{
+    let text="Please select a task";
+    user_do_not_choose_task(text);
+}
 });
 
 let detailtest=document.querySelector("#detailtest");
 detail.addEventListener("click",function(){
     let selectedtocheck=document.querySelector(".selected");
     if(selectedtocheck && !checkarea.hasChildNodes()){
-        let data=[
-            {lable:"Date :",value:selectedtocheck.getAttribute("data-create-date")},
-            {lable:"Time :",value:selectedtocheck.getAttribute("data-create-time") }
-        ];
+        let data_to_show_date=selectedtocheck.firstElementChild;
+        let data_to_show_time=selectedtocheck.lastElementChild;
+        let text_of_date=data_to_show_date.textContent;
+        let text_of_time=data_to_show_time.textContent;
+        let text_of_character=(selectedtocheck.textContent.length)-18;
         let displaydiv=document.createElement("div");
+        displaydiv.classList.add("displaydiv");
         checkarea.append(displaydiv);
-        data.forEach(check=>{
         let displaytag=document.createElement("h4");
-        displaydiv.append(displaytag);
-        displaytag.textContent=check.lable+check.value;
+        let displaytag1=document.createElement("h4");
+        let displaytag2=document.createElement("h4");
+        displaydiv.append(displaytag,displaytag1,displaytag2);
+        displaytag.textContent=`Date: ${text_of_date}`;
+        displaytag1.textContent=`Time: ${text_of_time}`;
+        displaytag2.textContent=`Total Character: ${text_of_character}`;
         displaytag.style.fontStyle="italic"
-        });
+        displaytag1.style.fontStyle="italic"
+        displaytag2.style.fontStyle="italic"
+       
         let displaybutton=document.createElement("button");
+        displaybutton.classList.add("detailbutton")
         displaydiv.append(displaybutton);
         displaybutton.textContent="Ok";
         displaybutton.addEventListener("click",function(){
             displaydiv.remove();
         });
        
+    }else{
+        let text="Please select a task";
+        user_do_not_choose_task(text);
     }
 });
 
@@ -166,3 +207,32 @@ function update_data(){
         localStorage.setItem("data",JSON.stringify(data));
     };
 }
+
+setting.addEventListener("click",function(){
+    let ptag1=document.createElement("p");
+    ptag1.textContent="This feature is still testing";
+    body.append(ptag1);
+    ptag1.classList.add("ptag1");
+    setTimeout(() => {
+        body.removeChild(ptag1);
+    }, 2000);
+
+})
+
+function capitalizeFirstLetter(userInput) {
+    if (userInput && typeof userInput === 'string') {
+        return userInput.charAt(0).toUpperCase() + userInput.slice(1);
+    }
+    return userInput;
+}
+
+function user_do_not_choose_task(text){
+    let ptag1=document.createElement("p");
+    body.append(ptag1);
+    ptag1.textContent=text;
+    ptag1.classList.add("ptag1");
+    setTimeout(() => {
+        body.removeChild(ptag1);
+    }, 1500);
+}
+// detail box တွင် slice method သုံးပြီးရေးထားကိုပြန်ပြင်ရန် 
