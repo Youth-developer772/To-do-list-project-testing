@@ -41,7 +41,7 @@ function additem(){
     let li=document.createElement("li");
     let now_create= new Date();
     let date_container=now_create.toLocaleDateString("en-GB");
-    let time_container=now_create.toLocaleTimeString("my-MM",{hour:"2-digit",minute:"2-digit"});
+    let time_container=now_create.toLocaleTimeString("en-MM",{hour:"2-digit",minute:"2-digit"});
     let h4tag_to_checkdate=document.createElement("h3");
     let h4tag_to_checktime=document.createElement("h4");
     h4tag_to_checkdate.textContent=date_container;

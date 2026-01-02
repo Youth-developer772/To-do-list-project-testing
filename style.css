@@ -8,8 +8,11 @@ body{
     height: 100vh;
     background-size: cover;
 }
+.header{
+}
 .container{
     overflow: hidden;
+    height: 100vh;
 }
 h2{
     font-style: italic;
@@ -56,7 +59,7 @@ button:hover{
     font-weight: bold;
     width: auto !important;
     color: rgb(27, 25, 25);
-    padding: 0 !important;
+    padding: 0 5px !important;
     cursor: pointer;
     flex-grow: 1 !important;
     letter-spacing: normal;
@@ -65,11 +68,13 @@ button:hover{
         flex-grow: 1;
     }
     .listandnew{
+        height: 80vh;
         display: flex;
         flex-direction: column;
     }
     .newfeature{
-    
+    position: fixed;
+    bottom: 0;
     display: flex;
     width: 100%;
     flex-direction: row !important;
@@ -101,15 +106,17 @@ li.selected{
     background-color:#0e74db;
 }
 li{
+   
     width: 100%;
     font-size: 20px;
     word-wrap: break-word;
     margin-left: 3px;
     padding: 0;
-    color:rgb(57, 8, 192);/*testing*/
+    color:rgb(19, 19, 19);/*testing*/
     font-family: "Times New Roman", Times, serif;
 }
 #list{
+    background-color: dimgrey;
     padding-left: 25px;
     border: none;
     outline: none;
