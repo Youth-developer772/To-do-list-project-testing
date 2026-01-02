@@ -10,6 +10,8 @@ let detail=document.querySelector("#detail");
 let checkarea=document.querySelector("#checkarea");
 let conboxwarper=document.querySelector("#conboxwarper");
 let setting=document.querySelector("#setting");
+let listwarpper=document.querySelector(".listwarpper");
+let input_span=document.querySelector(".input_span");
 
 window.onload=function(){
     let test=localStorage.getItem("data");
@@ -34,7 +36,13 @@ window.onload=function(){
     })
 }
 
+input.addEventListener("input",function(){
+    // input_span.style.display="block";
+   input_span.textContent=input.value;
+})
+
 function additem(){
+    input_span.textContent="";
     let a=input.value.trim();
     let b=capitalizeFirstLetter(a);
     if (b!==""){  
@@ -184,12 +192,16 @@ detail.addEventListener("click",function(){
         let displaybutton=document.createElement("button");
         displaybutton.classList.add("detailbutton")
         displaydiv.append(displaybutton);
-        displaybutton.textContent="Ok";
+        displaybutton.textContent="OK";
         displaybutton.addEventListener("click",function(){
             displaydiv.remove();
         });
        
-    }else{
+    }
+    else if(checkarea.hasChildNodes()){
+        
+    }
+    else{
         let text="Please select a task";
         user_do_not_choose_task(text);
     }

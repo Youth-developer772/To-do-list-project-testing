@@ -8,8 +8,6 @@ body{
     height: 100vh;
     background-size: cover;
 }
-.header{
-}
 .container{
     overflow: hidden;
     height: 100vh;
@@ -108,7 +106,6 @@ li.selected{
 li{
    
     width: 100%;
-    font-size: 20px;
     word-wrap: break-word;
     margin-left: 3px;
     padding: 0;
@@ -189,17 +186,18 @@ li{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-color: red;
+    background-color: rgb(13, 175, 127);
     width: 170px;
     height: 165px;
     text-align: center;
     border-radius: 6px;
 }
 .detailbutton{
-    width: 30px !important;
-    padding: 5px;
-    background-color: rgb(165, 140, 140,0.5);
+    width: 40px !important;
+    padding: 3px !important;
+    background-color: rgb(6, 128, 243);
     border-radius: 5px;
+    letter-spacing: normal;
 }
 #buttonwarper{
     display: flex;
@@ -251,4 +249,9 @@ h4 span{
     to{
         top:40%;
     }
+}
+.input_span{
+   background-color: rgb(218, 204, 16);
+   position: absolute;
+   left: 8%;
 }
